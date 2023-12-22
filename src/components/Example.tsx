@@ -46,7 +46,13 @@ function handleDragOver(event: DragOverEvent) {
   // }
 }
 
-function handleDragStart(event: DragStartEvent) {
+
+
+export function MyDndComponent() {
+
+  const [activeType, setActiveType] = useState<DraggableType|undefined>(undefined);
+
+  function handleDragStart(event: DragStartEvent) {
   
     console.log("Drag Start Event: ", event);
   
@@ -58,6 +64,7 @@ function handleDragStart(event: DragStartEvent) {
     }
   
     const { type } = active.data.current;
+    setActiveType(type);
   
     // Теперь безопасно проверяем, соответствует ли тип draggable элемента принимаемым типам
     if (type === DraggableType.a) {
@@ -68,8 +75,6 @@ function handleDragStart(event: DragStartEvent) {
       console.log("Draggable C is being dragged");
     }
   }
-
-export function MyDndComponent() {
 
 const handleDragEnd = (event: DragEndEvent) => {
 
@@ -98,12 +103,36 @@ const handleDragEnd = (event: DragEndEvent) => {
       <DraggableComponent id="draggable-b" type={DraggableType.b} />
       <DraggableComponent id="draggable-c" type={DraggableType.c}/>
 
-      <DroppableComponent id="droppable-A,B,C" acceptsTypes={[DraggableType.a, DraggableType.b, DraggableType.c]} />
-      <DroppableComponent id="droppable-A" acceptsTypes={[DraggableType.a]} />
-      <DroppableComponent id="droppable-B" acceptsTypes={[DraggableType.b]} />
-      <DroppableComponent id="droppable-C" acceptsTypes={[DraggableType.c]} />
-      <DroppableComponent id="droppable-B,C" acceptsTypes={[DraggableType.b, DraggableType.c]} />
-      <DroppableComponent id="droppable-A,C" acceptsTypes={[DraggableType.a, DraggableType.c]} />
+      <DroppableComponent 
+        id="droppable-A,B,C" 
+        acceptsTypes={[DraggableType.a, DraggableType.b, DraggableType.c]} 
+        activeType={activeType}
+      />
+      <DroppableComponent 
+        id="droppable-A" 
+        acceptsTypes={[DraggableType.a]} 
+        activeType={activeType}
+      />
+      <DroppableComponent 
+        id="droppable-B" 
+        acceptsTypes={[DraggableType.b]} 
+        activeType={activeType}
+      />
+      <DroppableComponent 
+        id="droppable-C" 
+        acceptsTypes={[DraggableType.c]}
+        activeType={activeType} 
+      />
+      <DroppableComponent 
+        id="droppable-B,C" 
+        acceptsTypes={[DraggableType.b, DraggableType.c]}
+        activeType={activeType} 
+      />
+      <DroppableComponent 
+        id="droppable-A,C" 
+        acceptsTypes={[DraggableType.a, DraggableType.c]}
+        activeType={activeType} 
+      />
     </DndContext>
   );
 }

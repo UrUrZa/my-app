@@ -91,10 +91,14 @@ const handleDragEnd = (event: DragEndEvent) => {
   // После проверки безопасно обращаемся к свойствам
   if (over.data.current.includes(active.data.current.type)) {
     console.log("Acceptable", `${active.id} is dropped on ${over.id}`);
+    setActiveType(undefined);
   } else {
     console.log("Unacceptable", `${active.id} is dropped on ${over.id}`);
+    setActiveType(undefined);
   }
 };
+
+
 
 
   return (

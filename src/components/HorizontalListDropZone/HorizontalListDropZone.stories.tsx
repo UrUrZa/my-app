@@ -7,7 +7,10 @@ export default {
 } as Meta;
 
 const componentDefaultProps: IHorizontalListDropZoneProps = {
-    onClick: () => console.log("HorizontalListDropZone clicked")
+    onAcceptDrop: () => console.log("HorizontalListDropZone clicked"),
+    isAcceptableDrop: true,
+    dropZoneContent: ["HorizontalListDropZone"],
+    isAcceptableNew: true,
 }
 
 export const DraggableRectangleStory = () => {

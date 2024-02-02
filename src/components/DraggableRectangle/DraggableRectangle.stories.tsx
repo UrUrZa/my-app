@@ -7,7 +7,17 @@ export default {
 } as Meta;
 
 const componentDefaultProps: IDraggableRectangleProps = {
-    onClick: () => console.log("DraggableRectangle clicked")
+    onDragStart: () => console.log("DraggableRectangle onDragStart"),
+    onDragEnd: () => console.log("DraggableRectangle onDragEnd"),
+    title: "DraggableRectangle",
+    color: "red",
+    cardId: "1",
+    dropZone: {
+        onAcceptDrop: () => console.log("HorizontalListDropZone onAcceptDrop"),
+        isAcceptableDrop: true,
+        dropZoneContent: ["HorizontalListDropZone"],
+        isAcceptableNew: true,
+    } 
 }
 
 export const DraggableRectangleStory = () => {

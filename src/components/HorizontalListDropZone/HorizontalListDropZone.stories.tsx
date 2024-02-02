@@ -9,7 +9,19 @@ export default {
 const componentDefaultProps: IHorizontalListDropZoneProps = {
     onAcceptDrop: () => console.log("HorizontalListDropZone clicked"),
     isAcceptableDrop: true,
-    dropZoneContent: ["HorizontalListDropZone"],
+    dropZoneContent: [{
+        onDragStart: () => console.log("DraggableRectangle onDragStart"),
+        onDragEnd: () => console.log("DraggableRectangle onDragEnd"),
+        title: "DraggableRectangle",
+        color: "red",
+        cardId: "1",
+        dropZone: {
+            onAcceptDrop: () => console.log("HorizontalListDropZone onAcceptDrop"),
+            isAcceptableDrop: true,
+            dropZoneContent: [],
+            isAcceptableNew: true,
+        } 
+    }],
     isAcceptableNew: true,
 }
 

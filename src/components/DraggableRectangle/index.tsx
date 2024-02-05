@@ -1,7 +1,7 @@
 import React from 'react';
-import { useDraggable, useDroppable } from '@dnd-kit/core';
+import { DndContext, DragEndEvent, DragStartEvent, useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
-import { Paper, IconButton } from '@mui/material';
+import { Paper, IconButton, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DrillDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { HorizontalListDropZone, IHorizontalListDropZoneProps } from '../HorizontalListDropZone';
@@ -31,10 +31,6 @@ export const DraggableRectangle: React.FC<IDraggableRectangleProps> = ({
     id: cardId,
   });
 
-  const { setNodeRef: setDropZoneRef } = useDroppable({
-    id: `${cardId}-dropzone`,
-  });
-
   const style = {
     transform: CSS.Translate.toString(transform),
     backgroundColor: color,
@@ -44,26 +40,44 @@ export const DraggableRectangle: React.FC<IDraggableRectangleProps> = ({
     justifyContent: 'space-between',
   };
 
+  const DndWrapper = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+            {children}
+        </DndContext>
+    );
+};
+
+const handleDragEnd = (event: DragEndEvent) => {
+    onDragEnd();
+    console.log(`DraggableRectangle onDragEnd: ${event?.over?.id}`);
+};
+
+const handleDragStart = (event: DragStartEvent) => {
+    onDragStart();
+    console.log(`DraggableRectangle onDragStart: ${event?.active?.id}`);
+};
+
   return (
-    <Paper ref={setNodeRef} elevation={3} style={style} {...listeners} {...attributes}>
-      <div onClick={onDragStart}>{title}</div>
-      <div>
-        {dropZone &&  (
-          <div ref={setDropZoneRef} /* style and className for drop zone */>
+    <DndWrapper>
+      <Paper ref={setNodeRef} elevation={3} style={style} {...listeners} {...attributes}>
+        <Typography >{title}</Typography>
+        <div>
+          {dropZone &&  (
             <HorizontalListDropZone {...dropZone} />
-          </div>
-        )}
-        {onDrillDownClick && (
-          <IconButton onClick={onDrillDownClick} size="small" edge="end">
-            <DrillDownIcon />
-          </IconButton>
-        )}
-        {onClear && (
-          <IconButton onClick={onClear} size="small">
-            <DeleteIcon />
-          </IconButton>
-        )}
-      </div>
-    </Paper>
+          )}
+          {onDrillDownClick && (
+            <IconButton onClick={onDrillDownClick} size="small" edge="end">
+              <DrillDownIcon />
+            </IconButton>
+          )}
+          {onClear && (
+            <IconButton onClick={onClear} size="small">
+              <DeleteIcon />
+            </IconButton>
+          )}
+        </div>
+      </Paper>
+    </DndWrapper>
   );
 };

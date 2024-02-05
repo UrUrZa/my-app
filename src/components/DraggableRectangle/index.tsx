@@ -1,7 +1,7 @@
 import React from 'react';
 import { DndContext, DragEndEvent, DragStartEvent, useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
-import { Paper, IconButton, Typography } from '@mui/material';
+import { Paper, IconButton, Typography, Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DrillDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { HorizontalListDropZone, IHorizontalListDropZoneProps } from '../HorizontalListDropZone';
@@ -61,8 +61,8 @@ const handleDragStart = (event: DragStartEvent) => {
   return (
     <DndWrapper>
       <Paper ref={setNodeRef} elevation={3} style={style} {...listeners} {...attributes}>
-        <Typography >{title}</Typography>
-        <div>
+        <Typography padding={1} >{title}</Typography>
+        <Box display={'flex'} alignItems={'center'}>
           {dropZone &&  (
             <HorizontalListDropZone {...dropZone} />
           )}
@@ -76,7 +76,7 @@ const handleDragStart = (event: DragStartEvent) => {
               <DeleteIcon />
             </IconButton>
           )}
-        </div>
+        </Box>
       </Paper>
     </DndWrapper>
   );

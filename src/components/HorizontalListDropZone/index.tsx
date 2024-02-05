@@ -37,6 +37,7 @@ export const HorizontalListDropZone: React.FC<IHorizontalListDropZoneProps> = ({
   };
 
   const StyledBox = styled(Box)`
+    margin: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,8 +45,6 @@ export const HorizontalListDropZone: React.FC<IHorizontalListDropZoneProps> = ({
     `;
 
   const StyledBoxDropHere = styled(Box)`
-    margin-top: 2;
-    padding: 2;
     border: 2px dashed #999;
     border-radius: 4px;
     cursor: pointer;
@@ -54,16 +53,20 @@ export const HorizontalListDropZone: React.FC<IHorizontalListDropZoneProps> = ({
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
       <Paper ref={setNodeRef} elevation={3} sx={{ p: 2, backgroundColor: isAcceptableDrop ? '#b2fab4' : 'grey' }}>
-        <StyledBox>
-          {dropZoneContent.map((content, index) => (
-            <DraggableRectangle key={index} {...content} />
-          ))}
+        <Box display={'flex'} alignItems={'center'} justifyContent={'space-around'}>
+          <StyledBox>
+            {dropZoneContent.map((content, index) => (
+              <Box margin={1}>
+                <DraggableRectangle key={index} {...content} />
+              </Box>
+            ))}
+          </StyledBox>
           {isAcceptableNew && (
-            <StyledBoxDropHere>
-              <Typography color="#999">Drop here</Typography>
-            </StyledBoxDropHere>
-          )}
-        </StyledBox>
+              <StyledBoxDropHere>
+                <Typography color="#999" margin={1} align='center'>Drop here</Typography>
+              </StyledBoxDropHere>
+            )}
+        </Box>
       </Paper>
     </DndContext>
   );

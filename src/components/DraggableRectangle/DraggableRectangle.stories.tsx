@@ -2,6 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { DraggableRectangle, IDraggableRectangleProps } from '.';
 import { DndContext } from '@dnd-kit/core';
+import { Box } from '@mui/material';
 
 
 export default {
@@ -35,21 +36,20 @@ export const DraggableRectangleStory = () => {
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <Box height={'300px'} width={`500px`} bgcolor={'darkgrey'}>   
+            <DndWrapper>
+                <DraggableRectangle {...componentProps}/>
+            </DndWrapper>
+        </Box>
     );
 }
-
 export const DraggableRectangleWithOnClearStory = () => {
     const componentProps: IDraggableRectangleProps = {
         onClear: () => console.log("DraggableRectangle onClear"),
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 
@@ -59,9 +59,7 @@ export const DraggableRectangleWithOnDrillDownClickStory = () => {
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 
@@ -72,9 +70,7 @@ export const DraggableRectangleWithBothOnClearAndOnDrillDownClickStory = () => {
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 
@@ -89,9 +85,7 @@ export const DraggableRectangleWithDropZoneStory = () => {
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 
@@ -107,9 +101,7 @@ export const DraggableRectangleWithDropZoneAndOnClearStory = () => {
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 
@@ -125,9 +117,7 @@ export const DraggableRectangleWithDropZoneAndOnDrillDownClickStory = () => {
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 
@@ -144,9 +134,7 @@ export const DraggableRectangleWithDropZoneAndBothOnClearAndOnDrillDownClickStor
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 
@@ -170,9 +158,7 @@ export const DraggableRectangleWithDropZoneWithContentStory = () => {
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 
@@ -204,9 +190,7 @@ export const DraggableRectangleWithDropZoneWithTwoContentStory = () => {
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 
@@ -236,9 +220,7 @@ export const DraggableRectangleWithDropZoneWithContentDropZoneStory = () => {
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 export const DraggableRectangleWithDropZoneWithContentDropZoneWithContentStory = () => {
@@ -274,9 +256,7 @@ export const DraggableRectangleWithDropZoneWithContentDropZoneWithContentStory =
         ...componentDefaultProps,
     }
     return (
-        <DndWrapper>
-            <DraggableRectangle {...componentProps}/>
-        </DndWrapper>
+        <DraggableRectangle {...componentProps}/>
     );
 }
 

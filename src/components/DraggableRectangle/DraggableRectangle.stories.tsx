@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { DraggableRectangle, IDraggableRectangleProps } from '.';
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import { Box } from '@mui/material';
 
 
@@ -19,15 +19,20 @@ const componentDefaultProps: IDraggableRectangleProps = {
 
 const DndWrapper = ({ children }: { children: React.ReactNode }) => {
     return (
-        <DndContext onDragEnd={handleDragEnd}>
+        <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
             {children}
         </DndContext>
     );
 };
 
-const handleDragEnd = (event: any) => {
+const handleDragEnd = (event: DragEndEvent) => {
     console.log(event);
-    console.log("DraggableRectangle onDragEnd");
+    console.log(`DraggableRectangle onDragEnd: ${event?.active.id}`);
+};
+
+const handleDragStart = (event: DragStartEvent) => {
+    console.log(event);
+    console.log(`DraggableRectangle onDragStart: ${event?.active?.id}`);
 };
   
 
@@ -190,7 +195,11 @@ export const DraggableRectangleWithDropZoneWithTwoContentStory = () => {
         ...componentDefaultProps,
     }
     return (
-        <DraggableRectangle {...componentProps}/>
+        <Box height={'300px'} width={`500px`} bgcolor={'darkgrey'}>   
+            <DndWrapper>
+                <DraggableRectangle {...componentProps}/>
+            </DndWrapper>
+        </Box>
     );
 }
 
